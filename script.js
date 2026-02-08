@@ -46,7 +46,7 @@ yesBtn.addEventListener("click", () => {
 
     setTimeout(() => {
         text.innerText = "Mujhse bhi to puch le moti kahi ki 😜";
-    }, 10000);
+    }, 3000);
 });
 
 
