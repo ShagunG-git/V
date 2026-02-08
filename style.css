@@ -1,46 +1,112 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Comic Sans MS', cursive;
+}
+
 body {
     margin: 0;
-    font-family: 'Comic Sans MS', cursive;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
     height: 100vh;
+    background: linear-gradient(-45deg, #ff4d6d, #ff758f, #ff9a9e, #fad0c4);
+    background-size: 400% 400%;
+    animation: gradientMove 10s ease infinite;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
-.container {
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    text-align: center;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+/* Background animation */
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
-h1 {
-    font-size: 22px;
-}
-
-img {
+/* Floating hearts */
+.hearts::before {
+    content: "💖 💕 💘 💓 💗";
+    position: absolute;
     width: 100%;
-    max-height: 280px;
+    text-align: center;
+    font-size: 40px;
+    animation: floatHearts 6s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes floatHearts {
+    0% {
+        transform: translateY(100vh);
+    }
+
+    100% {
+        transform: translateY(-100vh);
+    }
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 20px;
+    width: 350px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    animation: pop 0.6s ease;
+}
+
+@keyframes pop {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.image-box {
+    position: relative;
+}
+
+.image-box img {
+    width: 100%;
+    height: 260px;
     object-fit: cover;
     border-radius: 15px;
-    margin: 20px 0;
+}
+
+.overlay-text {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 20px;
+    border-radius: 0 0 15px 15px;
+    transition: 0.3s;
 }
 
 .buttons {
     display: flex;
-    gap: 20px;
-    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
 }
 
 button {
-    padding: 12px 20px;
+    flex: 1;
+    padding: 12px;
     font-size: 18px;
-    border: none;
     border-radius: 12px;
+    border: none;
     cursor: pointer;
 }
 
@@ -51,4 +117,48 @@ button {
 
 #noBtn {
     background: #adb5bd;
+}
+
+
+/* 🎉 CONFETTI */
+#confetti {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 999;
+}
+
+.confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 14px;
+    background: red;
+    opacity: 0.8;
+    animation: fall 3s linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+/* 🎊 HOORAY MODE */
+.hooray {
+    animation: hoorayGlow 1.2s infinite alternate;
+}
+
+@keyframes hoorayGlow {
+    from {
+        box-shadow: 0 0 20px #ff4d6d;
+    }
+
+    to {
+        box-shadow: 0 0 50px #ffb3c6;
+    }
 }
